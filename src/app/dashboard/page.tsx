@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import BalanceCards from "./_components/balance-cards"
 
 export const metadata: Metadata = {
     title: "Fina - Dashboard",
@@ -14,7 +15,7 @@ export default function DashboardPage() {
                 <p className="text-sm text-muted-foreground">Get insights into your spending, track your expenses and manage your finance</p>
             </section>
             <section id="content">
-
+                <BalanceCards />
             </section>
         </div>
     )

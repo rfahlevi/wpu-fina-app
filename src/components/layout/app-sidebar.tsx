@@ -52,8 +52,8 @@ export default function AppSidebar() {
                                 <SidebarMenuButton
                                     asChild
                                     tooltip={menu.label}
-                                    className={cn("py-2 px-4", {
-                                        'dark:bg-primary bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary dark:hover:bg-primary/80 dark:hover:text-white font-semibold transition-all duration-300 dark:text-white': pathname === menu.href
+                                    className={cn("py-4 px-4", {
+                                        'dark:bg-primary bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary dark:hover:bg-primary/80 dark:hover:text-white font-medium transition-all duration-300 dark:text-white': pathname === menu.href
                                     })}
                                 >
                                     <Link href={menu.href}>

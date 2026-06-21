@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import TransactionTable from "./transaction-table";
 import { getTransactions } from "@/actions/transaction/action";
+import CreateTransactionCard from "./create-transaction-card";
 
 export default function Transaction() {
 
@@ -21,7 +22,7 @@ export default function Transaction() {
     })
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4">
             <TransactionTable
                 transactions={transactions}
                 isLoading={isLoading}
@@ -33,7 +34,7 @@ export default function Transaction() {
                 setLimit={setLimit}
                 setSearch={setSearch}
             />
-            Transaction Form
+            <CreateTransactionCard refetch={refetch} />
         </div>
     )
 }

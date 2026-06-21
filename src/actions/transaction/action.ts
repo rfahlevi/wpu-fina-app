@@ -1,6 +1,7 @@
 "use server"
 
 import { createClient } from "@/lib/supabase/server";
+import { TTransaction } from "@/types/transaction";
 
 export async function getBalanceSummary() {
     const supabase = await createClient();
@@ -63,4 +64,15 @@ export async function getTransactions(params?: {
         error,
         count
     }
+}
+
+export async function createTransaction(
+    payload: Omit<TTransaction, 'id' | 'user_id' | 'embedding'>
+) {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from('transactions').insert(payload);
+
+    if (error) throw new Error(error.message)
+
+    return data
 }

@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import QueryProvider from "@/providers/query-client";
+import { Toaster } from "@/components/ui/sonner";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -28,7 +29,7 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", geist.variable)}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex flex-col min-h-full">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -37,6 +38,7 @@ export default function RootLayout({
         >
           <QueryProvider>
             <TooltipProvider>
+              <Toaster position="top-right" duration={3000} />
               {children}
             </TooltipProvider>
           </QueryProvider>

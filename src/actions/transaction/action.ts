@@ -77,6 +77,18 @@ export async function createTransaction(
     return data
 }
 
+export async function updateTransaction(
+    id: string,
+    payload: Omit<TTransaction, 'id' | 'user_id' | 'embedding'>
+) {
+    const supabase = await createClient();
+    const { data, error } = await supabase.from('transactions').update(payload).eq('id', id);
+
+    if (error) throw new Error(error.message)
+
+    return data
+}
+
 export async function deleteTransaction(id: string) {
     const supabase = await createClient();
     const { success, error } = await supabase.from('transactions').delete().eq('id', id);

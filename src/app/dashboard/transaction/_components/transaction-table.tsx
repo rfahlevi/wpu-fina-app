@@ -12,6 +12,7 @@ import { IconLoader, IconPencilFilled, IconTrashXFilled } from "@tabler/icons-re
 import { useEffect, useState } from "react";
 import DeleteTransactionDialog from "./delete-transaction-dialog";
 import { TTransaction } from "@/types/transaction";
+import UpdateTransactionDialog from "./update-transaction-dialog";
 
 
 const TABLE_HEADER = ["#", "Date", "Description", "Category", "Amount", ""];
@@ -52,7 +53,7 @@ export default function TransactionTable({
 
     const [selectedTransaction, setSelectedTransaction] = useState<{
         data: Omit<TTransaction, 'user_id' | 'embedding'>;
-        action: 'edit' | 'delete';
+        action: 'update' | 'delete';
     } | null>(null);
 
     return (
@@ -110,7 +111,12 @@ export default function TransactionTable({
                                             variant="ghost"
                                             size="icon"
                                             className="transition-all duration-200 text-muted-foreground hover:text-amber-400"
-                                            onClick={() => { }}
+                                            onClick={() => {
+                                                setSelectedTransaction({
+                                                    data: trx,
+                                                    action: 'update',
+                                                })
+                                            }}
                                         >
                                             <IconPencilFilled className="size-4" />
                                         </Button>
@@ -199,6 +205,10 @@ export default function TransactionTable({
                 </CardContent>
             </Card>
             <DeleteTransactionDialog
+                selectedTransaction={selectedTransaction}
+                setSelectedTransaction={setSelectedTransaction}
+                refetch={refetch} />
+            <UpdateTransactionDialog
                 selectedTransaction={selectedTransaction}
                 setSelectedTransaction={setSelectedTransaction}
                 refetch={refetch} />

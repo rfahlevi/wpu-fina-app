@@ -158,13 +158,13 @@ export default function CreateTransactionCard({
                                             <SelectValue placeholder="Select a category" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="monthly-salary">Monthly Salary</SelectItem>
-                                            <SelectItem value="freelance">Freelance</SelectItem>
-                                            <SelectItem value="food-and-drink">Food & Drink</SelectItem>
+                                            <SelectItem value="Monthly Salary">Monthly Salary</SelectItem>
+                                            <SelectItem value="Freelance">Freelance</SelectItem>
+                                            <SelectItem value="Food & Drink">Food & Drink</SelectItem>
                                             <SelectItem value="Transportation">Transportation</SelectItem>
-                                            <SelectItem value="entertainment">Entertainment</SelectItem>
-                                            <SelectItem value="shopping">Shopping</SelectItem>
-                                            <SelectItem value="housing">Housing</SelectItem>
+                                            <SelectItem value="Entertainment">Entertainment</SelectItem>
+                                            <SelectItem value="Shopping">Shopping</SelectItem>
+                                            <SelectItem value="Housing">Housing</SelectItem>
                                         </SelectContent>
                                     </Select>
                                     {fieldState.invalid && (

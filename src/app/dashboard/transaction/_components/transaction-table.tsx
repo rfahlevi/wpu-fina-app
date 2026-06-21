@@ -10,6 +10,8 @@ import { rupiahFormatter } from "@/helpers/rupiah-formatter";
 import { cn } from "@/lib/utils";
 import { IconLoader, IconPencilFilled, IconTrashXFilled } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import DeleteTransactionDialog from "./delete-transaction-dialog";
+import { TTransaction } from "@/types/transaction";
 
 
 const TABLE_HEADER = ["#", "Date", "Description", "Category", "Amount", ""];
@@ -17,7 +19,7 @@ const TABLE_HEADER = ["#", "Date", "Description", "Category", "Amount", ""];
 export default function TransactionTable({
     transactions,
     isLoading,
-    // refetch,
+    refetch,
     page,
     limit,
     search,
@@ -47,6 +49,11 @@ export default function TransactionTable({
 
         return () => clearTimeout(timer);
     })
+
+    const [selectedTransaction, setSelectedTransaction] = useState<{
+        data: Omit<TTransaction, 'user_id' | 'embedding'>;
+        action: 'edit' | 'delete';
+    } | null>(null);
 
     return (
         <>
@@ -107,11 +114,17 @@ export default function TransactionTable({
                                         >
                                             <IconPencilFilled className="size-4" />
                                         </Button>
+
                                         <Button
                                             variant="ghost"
                                             size="icon"
                                             className="transition-all duration-200 text-muted-foreground hover:text-destructive"
-                                            onClick={() => { }}
+                                            onClick={() => {
+                                                setSelectedTransaction({
+                                                    data: trx,
+                                                    action: 'delete',
+                                                })
+                                            }}
                                         >
                                             <IconTrashXFilled className="size-4" />
                                         </Button>
@@ -185,6 +198,10 @@ export default function TransactionTable({
                     </div>
                 </CardContent>
             </Card>
+            <DeleteTransactionDialog
+                selectedTransaction={selectedTransaction}
+                setSelectedTransaction={setSelectedTransaction}
+                refetch={refetch} />
         </>
     )
 }

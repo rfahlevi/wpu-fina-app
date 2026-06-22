@@ -117,6 +117,8 @@ export default function Home() {
       </div>
       {/* Content */}
 
+
+
       {/* <IconSubtitlesAi stroke={2} size={60} className="text-primary" />
       <div className="flex flex-col items-center justify-center gap-0">
         <h1 className="text-xl text-muted-foreground">Welcome to <span className="font-bold text-primary">Fina App</span></h1>
